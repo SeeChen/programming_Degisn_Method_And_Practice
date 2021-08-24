@@ -13,7 +13,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;-*Except for the number, all titles are the same as [Programming Design and Pratice](http://lexue.bit.edu.cn/course/view.php?id=8303).*</br>
 &nbsp;&nbsp;&nbsp;&nbsp;-*All code don't have input and output example.*</br>
 &nbsp;&nbsp;&nbsp;&nbsp;-*If you can't find the code you want, please check whether other code files have similar topic.*</br>
-&nbsp;&nbsp;&nbsp;&nbsp;-*All codes are in the [Code](https://github.com/SeeChen/lexue_C_Language/tree/main/Code) folder.*</br>
+&nbsp;&nbsp;&nbsp;&nbsp;-*All codes are in the [Code](https://github.com/SeeChen/programming_Degisn_Method_And_Practice/tree/main/Code) folder.*</br>
 ***
 ### Contributors
 &nbsp;&nbsp;&nbsp;&nbsp;-*This project exists thanks to all the people who contribute.*</br></br>
