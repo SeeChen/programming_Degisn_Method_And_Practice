@@ -1,6 +1,6 @@
 <img src="http://www.jd-tv.com/uploads/allimg/170126/154920H54_0.png" width="100" height="100" alt=""/>
 
-# C Language of BeiJing Institute of Technology Lexue
+# C Language Programming Design and Pratice of BeiJing Institute of Technology Lexue
 ***
 ### About this Code:
 &nbsp;&nbsp;&nbsp;&nbsp;-*This is Code of LUXUE C Language of BIT.*<br/>
@@ -9,8 +9,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;-*The code for this repository is not complete，**BECAUSE I'M TOO LAZY TO WRITE** [😏😏😏](https://www.google.com/search?q=%E6%BB%91%E7%A8%BD&rlz=1C1SQJL_enMY905MY905&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj6uM-Gia_xAhV8yDgGHdggBL0Q_AUoAXoECAEQAw&biw=1280&bih=648).So if you have code, be sure to pull request to me!!!*</br>
 ***
 ### About sequence of the code
-&nbsp;&nbsp;&nbsp;&nbsp;-*This code is sorted from top to bottom in [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=6775), which is different from the [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=6775) number.*</br>
-&nbsp;&nbsp;&nbsp;&nbsp;-*Except for the number, all titles are the same as [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=6775).*</br>
+&nbsp;&nbsp;&nbsp;&nbsp;-*This code is sorted from top to bottom in [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=8303), which is different from the [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=8303) number.*</br>
+&nbsp;&nbsp;&nbsp;&nbsp;-*Except for the number, all titles are the same as [LEXUE C Language](http://lexue.bit.edu.cn/course/view.php?id=8303).*</br>
 &nbsp;&nbsp;&nbsp;&nbsp;-*All code don't have input and output example.*</br>
 &nbsp;&nbsp;&nbsp;&nbsp;-*If you can't find the code you want, please check whether other code files have similar topic.*</br>
 &nbsp;&nbsp;&nbsp;&nbsp;-*All codes are in the [Code](https://github.com/SeeChen/lexue_C_Language/tree/main/Code) folder.*</br>
