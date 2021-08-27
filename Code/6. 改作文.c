@@ -22,8 +22,6 @@ int main(){
 		if(c>='a'&&c<='z'&&uppAndLow==1){
 			c=c+('A'-'a');
 			uppAndLow=0;
-		}else if(c>='A'&&c<='Z'&&uppAndLow==0){
-			c=c+('a'-'A');
 		}else if(c=='\n'||c=='.'||c=='?'||c=='!'){
 			uppAndLow=1;
 		}
