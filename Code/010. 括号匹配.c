@@ -15,3 +15,34 @@ Output
 Hint
 第一组用例可以组成2对合法括号序列，分别是“((   )())”、“(   )”。
 */
+#include <stdio.h>
+int main(){
+	long int n,i,j,x=0,none=0;
+	int ugxxLeft[100005],ugxxRight[100005]={0},onlyLeft[100005]={0},onlyRight[100005]={0};
+	char kohc;
+	scanf("%d\n",&n);
+	for(i=0;i<n;i++){
+		while((kohc=getchar())!='\n'){
+			if(kohc=='(')
+				ugxxLeft[i]+=1;
+			else if(ugxxLeft[i]>0)
+				ugxxLeft[i]-=1;
+			else
+				ugxxRight[i]+=1;
+		}
+		if(ugxxLeft[i]==0&&ugxxRight[i]==0)
+			none+=1;
+		else if(ugxxLeft[i]==0)
+			onlyRight[ugxxRight[i]]+=1;
+		else if(ugxxRight[i]==0)
+			onlyLeft[ugxxLeft[i]]+=1;
+	}
+	for(i=0;i<n;i++){
+		if(onlyLeft[i]<onlyRight[i])
+			x+=onlyLeft[i];
+		else
+			x+=onlyRight[i];
+	}
+	x+=none/2;
+	printf("%d\n",x);
+}
