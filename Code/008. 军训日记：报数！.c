@@ -6,3 +6,38 @@
 数据范围与提示：0≤x≤999，1≤n≤10^1000
 输出格式：行末无空格，文末有回车。 注意，1的后三位是1，而1001的后三位是001。
 */
+#include <stdio.h>
+#include <string.h>
+#define xnjy 1001
+int main(){
+	int x,i,nLen,loop,ans=1,a,b,c,d,e;
+	char n[xnjy],newN[6];
+	scanf("%d %s",&x,&n);
+	for(i=0;i<6;i++){
+		newN[i]=48;
+	}
+	nLen=strlen(n);
+	for(i=0;i<6;i++)
+		newN[i]=n[nLen-(i+1)];
+	a=(newN[0]-'0');b=(newN[1]-'0');c=(newN[2]-'0');d=(newN[3]-'0');e=(newN[4]-'0');
+	if(a==-48)//不知道为啥当输入的数字为0的时候，减去字符'0'，乐学会等于-48，在我的电脑上是等于0的，所以添加了一个判断是否为-48来通过乐学的题目。
+		a+=48;
+	if(b==-48)
+		b+=48;
+	if(c==-48)
+		c+=48;
+	if(d==-48)
+		d+=48;
+	if(e==-48)
+		e+=48;
+	loop=a+(b*10)+(c*100);
+	if(nLen>3&&loop==0)
+		loop+=1000;
+	for(i=0;i<loop;i++)
+		ans=(ans*x)%100000;
+	if(x==0)
+		printf("0\n");
+	else if(ans>1000)
+		printf("%03d\n",ans%1000);
+	else printf("%d\n",ans%1000);
+}
