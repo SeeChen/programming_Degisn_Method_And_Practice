@@ -45,4 +45,4 @@ int main(){
 	}
 	x+=none/2;
 	printf("%d\n",x);
-} 
+}
