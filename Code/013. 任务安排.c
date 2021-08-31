@@ -46,4 +46,4 @@ int main(){
 			canDo+=1;
 		}
 	printf("%d\n",canDo);
-}
+} 
