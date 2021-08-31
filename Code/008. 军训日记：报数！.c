@@ -36,4 +36,4 @@ int main(){
 	else if(ans>1000)
 		printf("%03d\n",ans%1000);
 	else printf("%d\n",ans%1000);
-}
+} 
