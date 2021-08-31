@@ -8,3 +8,42 @@ Input
 Output
 一行一个整数，表示小张最多可以完成几项任务。
 */
+#include <stdio.h>
+#define N 300000
+int startTime[N],endTime[N];
+void swap(int *x,int *y){
+	int p;
+	p=*x;
+	*x=*y;
+	*y=p;
+}
+void kksu(int a[],int l,int r,int b[]){
+	if(l>=r) return;
+	int key=a[l],i=l,j=r;
+	while(i<j){
+		while(a[j]>=key&&i<j)
+			j--;
+		while(a[i]<=key&&i<j)
+			i++;
+		swap(&a[i],&a[j]);
+		swap(&b[i],&b[j]);
+	}
+	swap(&a[l],&a[i]);
+	swap(&b[l],&b[i]);
+	kksu(a,l,i-1,b);
+	kksu(a,i+1,r,b);
+}
+int main(){
+	int n,canDo=0,record=0;
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		scanf("%d %d",&startTime[i],&endTime[i]);
+	}
+	kksu(endTime,0,n-1,startTime);
+	for(int i=0;i<n;i++)
+		if(record<=startTime[i]){
+			record=endTime[i];
+			canDo+=1;
+		}
+	printf("%d\n",canDo);
+}
