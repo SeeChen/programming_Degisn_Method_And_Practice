@@ -72,4 +72,4 @@ int main(){
 		}
 	}
 	printf("%lld\n",cash);
-}
+} 
