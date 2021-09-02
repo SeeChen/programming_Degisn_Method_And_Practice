@@ -11,3 +11,59 @@ Notes
 数据保证有解，若有多种选取方法，输出其中字典序最小的一个，比如1 2 3 4比1 3 4 5的字典序小。
 提交后查看结果页面错误信息一栏，前4行的编译错误大家不用理会，第5行是关于你的结果的信息。
 */ 
+#include <stdio.h>
+#include <string.h>
+#include <limits.h>
+#include <stdbool.h>
+#define M 200010
+#define N 10010
+char vuzi[M],word[N*2];
+int next[M][26],bestAns[N],curAns[N];
+bool used[M];
+int main(){
+	int vuziLen,wordLen,i,j,k,use;
+	bool xyhr,best;
+	memset(next,-1,sizeof next);
+	scanf("%s %s",vuzi,word);
+	vuziLen=strlen(vuzi);
+	wordLen=strlen(word);
+	for(i=0;i<wordLen;i++)
+		bestAns[i]=INT_MAX;
+	strncat(word,word,N);
+	//seq-automaton https://segmentfault.com/a/1190000021980858
+	for(int i=vuziLen-1;i>=0;i--){
+		for(int j=0;j<26;j++)
+			next[i][j]=next[i+1][j];
+		next[i][vuzi[i]-'a']=i;
+	}
+	for(i=0;i<wordLen;i++){
+		use=k=0;
+		xyhr=best=true;
+		memset(used,0,sizeof used);
+		for(j=0;j<wordLen;j++){
+			if(used[use])
+				use++;
+			use=next[use][word[i+j]-'a'];
+			curAns[k++]=use+1;
+			used[use]=true;
+			if(use==-1){
+				xyhr=false;
+				break;
+			}
+		}
+		if(xyhr){
+			for(k=0;k<wordLen;k++)
+				if(curAns[k]>bestAns[k]){
+					best=false;
+					break;
+				}else if(curAns[k]<bestAns[k])
+					break;
+			if(best)
+				for(k=0;k<wordLen;k++)
+					bestAns[k]=curAns[k];
+		}
+	}
+	for(i=0;i<wordLen-1;i++)
+		printf("%d ",bestAns[i]);
+	printf("%d\n",bestAns[i]);
+}
