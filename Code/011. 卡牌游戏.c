@@ -12,3 +12,69 @@ Input
 Output
 一个整数，表示最少执行的操作数。
 */ 
+#include <stdio.h>
+#define N 200005
+int main(){
+	long n,uzpd[N],pddv[N],least[N]={0},diff[N]={0},numOne=-1,bigIa=0,i,j,flag,point,step,op=1;
+	scanf("%ld",&n);
+	for(i=0;i<n;i++)
+		scanf("%ld",&uzpd[i]);
+	for(i=0;i<n;i++){
+		scanf("%ld",&pddv[i]);
+		if(pddv[i]!=0){
+			least[pddv[i]]=i+2;
+			diff[pddv[i]]=i+2-pddv[i];
+			if(i+2-pddv[i]>=bigIa)
+				bigIa=i+2-pddv[i];
+		}
+		if(pddv[i]==1)
+			numOne=i;
+	}
+	if(numOne==-1){
+		flag=point=0;
+		step=diff[1]+n;
+		for(i=2;i<=n;i++)
+			if(diff[i]>point){
+				flag=1;
+				point=diff[i];
+				step=diff[i]+n;
+			}
+		if(flag==0){
+			printf("%ld\n",n);
+			return 0;
+		}else{
+			printf("%ld\n",step);
+			return 0;
+		}
+	}
+	for(i=0;i<n-numOne;i++)
+		if(pddv[i+numOne] != i+1){
+			op=0;
+			break;
+		}
+	if(op==0){
+		point=diff[1];
+		step=diff[1]+n;
+		for(i=2;i<=n;i++){
+			if(diff[i]>point){
+				point=diff[i];
+				step=diff[i]+n;
+			}
+		}
+		printf("%ld\n",step);
+		return 0;
+	}else{
+		flag=0;
+		long int startPoint=n-numOne+1;
+		for(i=startPoint,j=1;i<=n;i++,j++)
+			if(least[i]>j)
+				flag=1;
+		if(flag==0){
+			printf("%ld\n",numOne);
+			return 0;
+		}else{
+			printf("%ld\n",numOne+n+1);
+			return 0;
+		}
+	}
+}
