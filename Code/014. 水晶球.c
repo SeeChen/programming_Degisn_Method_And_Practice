@@ -16,3 +16,56 @@ Output
 Hint
 对于样例，如果久莲选择第六个水晶球，那么她可以打磨成半径为 r 等於 2.5 的水晶球，这是最优的选择。
 */
+#include <stdio.h>
+#include <stdlib.h>
+#define N 100005
+struct Node{
+	long long min;
+	long long mid;
+	long long max;
+	long long id;
+}vi[N];
+int cmp(const void *a,const void *b){
+	struct Node *aa=(struct Node *)a;
+	struct Node *bb=(struct Node *)b;
+	if(aa->max != bb->max){
+		return ( (aa->max) - (bb->max) );
+	}else{
+		if(aa->mid != bb->mid){
+			return ( (aa->mid) - (bb->mid) );
+		}else{
+			return ( (aa->min) - (bb->min) );
+		}
+	}
+}
+int main(){
+	long long n,i,maxOne=0,temp,k=1,maxTwo=0,k1Max=0;
+	long long minSide=0,minTemp,a,b;
+	scanf("%lld",&n);
+	for(i=0;i<n;i++){
+		scanf("%lld %lld %lld",&vi[i].min,&vi[i].mid,&vi[i].max);
+		if(vi[i].min>vi[i].mid){temp=vi[i].min;vi[i].min=vi[i].mid;vi[i].mid=temp;}
+		if(vi[i].min>vi[i].max){temp=vi[i].min;vi[i].min=vi[i].max;vi[i].max=temp;}
+		if(vi[i].mid>vi[i].max){temp=vi[i].mid;vi[i].mid=vi[i].max;vi[i].max=temp;}
+		vi[i].id=i;
+		if(vi[i].min>minSide){
+			k1Max=vi[i].id;
+			minSide=vi[i].min;
+		}
+	}
+	qsort(vi,n,sizeof(struct Node),cmp);
+	for(i=0;i<n-1;i++)
+		if( (vi[i+1].mid == vi[i].mid) && (vi[i+1].max == vi[i].max) ){
+			a=vi[i+1].min+vi[i].min;b=vi[i].mid;
+			minTemp=a<b?a:b;
+			if(minTemp > minSide){
+				k=2;
+				minSide=minTemp;
+				maxOne=vi[i].id;maxTwo=vi[i+1].id;
+			}
+		}
+	if(k==1)
+		printf("1\n%lld\n",k1Max+1);
+	else
+		printf("2\n%lld %lld\n",maxOne+1,maxTwo+1);
+}
