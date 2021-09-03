@@ -7,3 +7,37 @@ Input
 Output
 一个整数，表示最少交换几次能够完成任务。
 */
+#include <stdio.h>
+#define N 300005
+long long int height[N],count=0,temp[N];
+void mergeSort(long long int l,long long int r){
+	if(l<r){
+		long long int m=l+(r-l)/2;
+		mergeSort(l,m);
+		mergeSort(m+1,r);
+		// https://www.geeksforgeeks.org/merge-sort/
+		long long int k=0,i=l,j=m+1;
+		while(i<=m && j<=r){
+			if(height[i]<=height[j])
+				temp[k++]=height[i++];
+			else{
+				count+=m-i+1;
+				temp[k++]=height[j++];
+			}
+		}
+		while(i<=m)
+			temp[k++]=height[i++];
+		while(j<=r)
+			temp[k++]=height[j++];
+		for(i=l,j=0;i<=r;i++,j++)
+			height[i]=temp[j];
+	}
+}
+int main(){
+	long long int n,i;
+	scanf("%lld",&n);
+	for(i=0;i<n;i++)
+		scanf("%lld",&height[i]);
+	mergeSort(0,n-1);
+	printf("%lld\n",count);
+}
