@@ -13,3 +13,31 @@ Input
 Output
 若能填平则输出“YES”，否则输出“NO”。
 */
+// https://www.geeksforgeeks.org/stack-in-cpp-stl/
+#include <cstring>
+#include <iostream>
+#include <stack>
+using namespace std;
+int main(){
+	ios::sync_with_stdio(false);
+	int n,i;
+	long long int temp;
+	while(scanf("%d",&n)!=EOF){
+		stack<long long int> a;
+		for(i=0;i<n;i++){
+			scanf("%lld",&temp);
+			if(a.empty())
+				a.push(temp);
+			else{
+				if((temp%2==0 && a.top()%2==0) || (temp%2!=0 && a.top()%2!=0))
+					a.pop();
+				else
+					a.push(temp);
+			}
+		}
+		if(a.size()<2)
+			cout << "YES" << endl;
+		else
+			cout << "NO" <<endl;
+	}
+}
