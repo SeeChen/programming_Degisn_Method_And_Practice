@@ -14,3 +14,39 @@ Input
 Output
 若能填平则输出“YES”，否则输出“NO”。
 */
+#include <iostream>
+#include <stack>
+using namespace std;
+int main(){
+	int n,i;
+	long long int temp;
+	while(scanf("%d",&n)!=EOF){
+		long long int max=0;
+		stack<long long int> a;
+		bool diff=false;
+		for(i=0;i<n;i++){
+			scanf("%lld",&temp);
+			if(temp>=max)
+				max=temp;
+			if(a.empty()){
+				a.push(temp);
+			}else if(temp>a.top()){
+				diff=true;
+			}else if(temp==a.top()){
+				a.pop();
+			}else
+				a.push(temp);
+		}
+		if(diff)
+			cout << "NO" << endl;
+		else if(a.size()==0)
+			cout << "YES" << endl;
+		else if(a.size()==1){
+			if(a.top()==max)
+				cout << "YES" << endl;
+			else
+				cout << "NO" << endl;
+		}else if(a.size()>1)
+			cout << "NO" << endl;
+	}
+}
