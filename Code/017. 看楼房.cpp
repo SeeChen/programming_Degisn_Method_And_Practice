@@ -13,3 +13,57 @@ Output
 Notes
 在从左向右看楼房的时候，左边较矮的楼房会被右边较高的楼房挡住。
 */
+#include <cstring>
+#include <iostream>
+#include <stack>
+#define N 1000005
+using namespace std;
+struct house{
+	int color;
+	int height;
+};
+int colors[N],iuxm[N];
+int main(){
+	ios::sync_with_stdio(false);
+	int zu,zu_i;
+	scanf("%d",&zu);
+	for(zu_i=0;zu_i<zu;zu_i++){
+		int n,i,Count=0;
+		stack<house> a;
+		memset(iuxm,0,sizeof(iuxm));
+		scanf("%d",&n);
+		for(i=0;i<n;i++){
+			scanf("%d",&colors[i]);
+		}
+		for(i=0;i<n;i++){
+			house temp;
+			scanf("%d",&temp.height);
+			temp.color=colors[i];
+			if(a.empty()||temp.height<a.top().height){
+				a.push(temp);
+				if(iuxm[temp.color]==0)
+					Count++;
+				iuxm[temp.color]++;
+			}else{
+				while(temp.height>=a.top().height){
+					iuxm[a.top().color]--;
+					if(iuxm[a.top().color]==0)
+						Count--;
+					a.pop();
+					if(a.empty()||temp.height<a.top().height){
+						a.push(temp);
+						if(iuxm[temp.color]==0)
+							Count++;
+						iuxm[temp.color]++;
+						break;
+					}
+				}
+			}
+			printf("%d",Count);
+			if(i<n-1){
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+}
