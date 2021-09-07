@@ -88,4 +88,4 @@ int main(){
 			printf("%lld.0000\n",ans);
 		}
 	}
-}
+} 
