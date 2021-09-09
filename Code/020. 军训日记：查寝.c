@@ -12,3 +12,67 @@
 注意：
 行末无空格，文末有回车。
 */
+#include <stdio.h>
+#include <stdbool.h>
+#define N 100005
+#define ll long long int
+struct{
+	ll num;
+	ll top;
+	ll bottom;
+}item[N];
+ll next[N][2]={0};
+bool output[N]={false};
+int main(){
+	ll m,n,uuiu,i,j,x,y;;
+	scanf("%lld %lld",&n,&m);
+	for(i=1;i<=n;i++){
+		item[i].top=item[i].bottom=i;
+		item[i].num=1;
+	}
+	while(m--){
+		scanf("%lld %lld",&x,&y);
+		if(item[x].num==0)
+			continue;
+		else{
+			if(item[y].num==0){
+				item[y].top=item[x].bottom;
+				item[y].bottom=item[x].top;
+			}
+			else{
+				if(next[item[x].top][0]==0)
+					next[item[x].top][0]=item[y].top;
+				else if(next[item[x].top][1]==0)
+					next[item[x].top][1]=item[y].top;
+				if(next[item[y].top][0]==0)
+					next[item[y].top][0]=item[x].top;
+				else if(next[item[y].top][1]==0)
+					next[item[y].top][1]=item[x].top;
+				item[y].top=item[x].bottom;
+			}
+			item[y].num+=item[x].num;
+		    item[x].top=item[x].bottom=item[x].num=0;
+		}
+	}
+	for(i=1;i<=n;i++){
+		printf("%lld",item[i].num);
+		if(item[i].num!=0){
+			printf(" %lld",item[i].top);
+			output[item[i].top]=true;
+			uuiu=item[i].top;
+			for(j=1;j<=item[i].num;j++){
+				if(next[uuiu][0]!=0 && !output[next[uuiu][0]]){
+					printf(" %lld",next[uuiu][0]);
+					uuiu=next[uuiu][0];
+					output[uuiu]=true;
+				}
+				if(next[uuiu][1]!=0 && !output[next[uuiu][1]]){
+					printf(" %lld",next[uuiu][1]);
+					uuiu=next[uuiu][1];
+					output[uuiu]=true;
+				}
+			}
+		}
+		printf("\n");
+	}
+}
