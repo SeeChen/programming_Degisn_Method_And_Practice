@@ -16,7 +16,7 @@
 ><!--If you want to view the problem-solving ideas, please click [here](https://google.com);
 >- For the OJ test result of the code, please check the update information column, update information [Identification](#description).-->
 #### File
->- The codes are sorted in the order of [Programming Method and Practice](http://lexue.bit.edu.cn/) from top to bottom, which will different from [LEXUE C language](http://lexue.bit.edu.cn/);
+>- The codes are sorted in the order of [Programming Method and Practice](http://lexue.bit.edu.cn/) from top to bottom, which will different from [Programming Method and Practice](http://lexue.bit.edu.cn/);
 >- Except for the document number, the title is the same as the title used in [Programming Method and Practice](http://lexue.bit.edu.cn/);
 >- If the problem is similar and the method of solving the problem is similar, you will only have one code file. Therefore, if you cannot find a code file with the same title, you can check whether there is a similar title file;
 >- All [Programming Method and Practice](http://lexue.bit.edu.cn/) question codes are stored in the [Code](https://github.com/SeeChen/programming_Degisn_Method_And_Practice/tree/main/Code) folder in order.
