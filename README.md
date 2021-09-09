@@ -29,8 +29,8 @@
 ><!--若想查看题目的解题思路，请点击[这里](https://google.com);
 >代码的 OJ 测试结果，请查看更新信息一栏,[更新信息标识](#description)。-->
 #### 文件
->- 代码按照[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)由上至下顺序排序，与[乐学乐学程序设计方法与实践](http://lexue.bit.edu.cn/)的编号会有所不同;
->- 除了文件的编号，标题与[乐学乐学程序设计方法与实践](http://lexue.bit.edu.cn/)中题目所用的标题一致;
+>- 代码按照[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)由上至下顺序排序，与[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)的编号会有所不同;
+>- 除了文件的编号，标题与[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)中题目所用的标题一致;
 >- 若题目相似、解题方法类似，则将只会拥有一个代码文件。因此若无法找到标题一致的代码文件，可以查看是否有类似的题目文件;
 >- 所有[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)的题目代码，按照顺序，存放在 [Code](https://github.com/SeeChen/programming_Degisn_Method_And_Practice/tree/main/Code) 文件夹里。
 #### Description
