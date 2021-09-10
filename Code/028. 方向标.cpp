@@ -15,3 +15,45 @@ The output has a single line with the number (modulo 2147483647) of distinct sig
 Note
 1 <= N <= 2000
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define mod INT_MAX
+ll dp[2005][2005],head[2005];
+ll max(ll a,ll b){
+	if(a>b)
+		return a;
+	else
+		return b;
+}
+ll min(ll a,ll b){
+	if(a>b)
+		return b;
+	else
+		return a;
+}
+int main(){
+	ios::sync_with_stdio(false);
+	ll N,ans=0,i,j;
+	scanf("%lld",&N);
+	scanf("%lld",&head[0]);
+	dp[1][head[0]]=1;
+	for(i=1;i<=N;i++){
+		scanf("%lld",&head[i]);
+		for(j=0;j<N+2;j++){
+			ll left=min(head[i-1],j);
+			ll right=max(head[i-1],j);
+			if(head[i]<=left)
+				dp[i][right]=(dp[i-1][j]+dp[i][right])%mod;
+			if (head[i]>=right)
+				dp[i][left]=(dp[i-1][j]+dp[i][left])%mod;
+			if (head[i]<right && head[i]>left){
+				dp[i][left]=(dp[i-1][j]+dp[i][left])%mod;
+				dp[i][right]=(dp[i-1][j]+dp[i][right])%mod;
+			}
+		}
+	}
+	for(int i=0;i<N+2;i++)
+		ans=(ans+dp[N][i])%mod;
+	printf("%lld\n",ans);
+}
