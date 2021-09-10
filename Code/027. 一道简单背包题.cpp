@@ -11,3 +11,27 @@ Output
 Note
 数据保证1 小於等於 n 逗號 V 小於等於 2000 逗號 1 小於等於 p 下標 i 小於等於 100000。
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+ll p,dp[4005];
+int main(){
+	ios::sync_with_stdio(false);
+	int n,v,i;
+	dp[0]=1;
+	scanf("%d %d",&n,&v);
+	while(n--){
+		scanf("%lld",&p);
+		p=p%v;
+		if(p==0)
+			p=v;
+		for(i=2*v;i>=p;i--)
+			dp[i]=(dp[i]+dp[i-p])%10000000;
+		for(i=2*v;i>=p;i--)
+			if(i>v){
+				dp[i-v]=(dp[i-v]+dp[i])%10000000;
+				dp[i]=0;
+			}
+	}
+	printf("%lld\n", dp[v]%10000000);
+}
