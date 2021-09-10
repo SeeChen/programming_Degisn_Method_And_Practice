@@ -16,3 +16,212 @@ Output
 第一行输出一个整数 a n s ，表示周老师最少需要逆时针旋转多少次才能恢复原样。
 接下来输出 a n s 行，每行两个数p 下標 x 空格 空格 空格 p 下標 y，表示逆时针旋转一次第p 下標 x行第p 下標 y列的小矩阵。
 */
+#include <bits/stdc++.h>
+using namespace std;
+char mp[16][16],mp2[16][16],rot2[4][4],x[16];
+int rot[4][4],c[16],flag=0;
+int checkRow(int u){
+	for(int i=0;i<16;i++){
+		switch(mp[u][i]){
+			case '0':
+				c[0]++;break;
+			case '1':
+				c[1]++;break;
+			case '2':
+				c[2]++;break;
+			case '3':
+				c[3]++;break;
+			case '4':
+				c[4]++;break;
+			case '5':
+				c[5]++;break;
+			case '6':
+				c[6]++;break;
+			case '7':
+				c[7]++;break;
+			case '8':
+				c[8]++;break;
+			case '9':
+				c[9]++;break;
+			case 'A':
+				c[10]++;break;
+			case 'B':
+				c[11]++;break;
+			case 'C':
+				c[12]++;break;
+			case 'D':
+				c[13]++;break;
+			case 'E':
+				c[14]++;break;
+			case 'F':
+				c[15]++;break;
+		}
+	}
+	for(int i=0;i<16;i++)
+		if(c[i]==0 || c[i]>1){
+			memset(c,0,sizeof(c));
+			return 0;
+		}
+	memset(c,0,sizeof(c));
+	return 1;
+}
+int restore(int x,int y){
+	for(int i=0;i<4;i++)
+		for(int j=0;j<4;j++)
+			mp[(x-1)*4+i][(y-1)*4+j]=mp2[(x-1)*4+i][(y-1)*4+j];
+	return 0;
+}
+int rotation(int n,int x,int y){
+	for(int i=0;i<n;i++){
+		for(int j=3;j>=0;j--)
+			for(int k=0;k<4;k++)
+				rot2[3-j][k]=mp[k+(x-1)*4][j+(y-1)*4];
+		for(int jj=0;jj<4;jj++)
+			for(int kk=0;kk<4;kk++)
+				mp[jj+(x-1)*4][kk+(y-1)*4]=rot2[jj][kk];
+	}
+	rot[x-1][y-1]=n;
+	return 0;
+}
+int dfs(int u,int v){
+	if(flag==1)
+		return 0;
+	if(v==4){
+		for(int i=0;i<4;i++){
+			rotation(i, u, v);
+			if(checkRow((u-1)*4)==1){
+				flag=1;
+				return 0;
+			}else{
+				restore(u,v);
+				rot[u-1][v-1]=0;
+			}
+		}
+	}else
+		for(int i=0;i<4;i++){
+			rotation(i,u,v);
+			dfs(u,v+1);
+			if(checkRow((u-1)*4)==1){
+				flag=1;
+				return 0;
+			}else
+				restore(u, v);
+		}
+	return 0;
+}
+int checkCol(){
+	for(int i=0;i<16;i++){
+		switch(x[i]){
+			case '0':
+				c[0]++;break;
+			case '1':
+				c[1]++;break;
+			case '2':
+				c[2]++;break;
+			case '3':
+				c[3]++;break;
+			case '4':
+				c[4]++;break;
+			case '5':
+				c[5]++;break;
+			case '6':
+				c[6]++;break;
+			case '7':
+				c[7]++;break;
+			case '8':
+				c[8]++;break;
+			case '9':
+				c[9]++;break;
+			case 'A':
+				c[10]++;break;
+			case 'B':
+				c[11]++;break;
+			case 'C':
+				c[12]++;break;
+			case 'D':
+				c[13]++;break;
+			case 'E':
+				c[14]++;break;
+			case 'F':
+				c[15]++;break;
+		}
+	}
+	for(int i=0;i<16;i++)
+		if(c[i]==0||c[i]>1){
+			memset(c,0,sizeof(c));
+			return 0;
+		}
+	memset(c,0,sizeof(c));
+	return 1;
+}
+int main(){
+	ios::sync_with_stdio(false);
+	int T;
+	scanf("%d",&T);
+	while(T--){
+		flag=0;
+		for(int i=0;i<16;i++){
+			scanf("%s",&mp[i]);
+			for(int j=0;j<16;j++)
+				mp2[i][j]=mp[i][j];
+		}
+		for(int i=1;i<5;i++){
+			flag=0;
+			dfs(i,1);
+		}
+		for(int i1=0;i1<2;i1++){
+			for(int i2=0;i2<2;i2++){
+				for(int i3=0;i3<2;i3++){
+					for(int i4=0;i4<2;i4++){
+						x[0]=mp[0][0+i1*3];
+						x[1]=mp[1][0+i1*3];
+						x[2]=mp[2][0+i1*3];
+						x[3]=mp[3][0+i1*3];
+						x[4]=mp[4][0+i2*3];
+						x[5]=mp[5][0+i2*3];
+						x[6]=mp[6][0+i2*3];
+						x[7]=mp[7][0+i2*3];
+						x[8]=mp[8][0+i3*3];
+						x[9]=mp[9][0+i3*3];
+						x[10]=mp[10][0+i3*3];
+						x[11]=mp[11][0+i3*3];
+						x[12]=mp[12][0+i4*3];
+						x[13]=mp[13][0+i4*3];
+						x[14]=mp[14][0+i4*3];
+						x[15]=mp[15][0+i4*3];
+						if(checkCol()==1)
+							goto p;
+						for(int m=0;m<4;m++)
+							rot[3][m]=(rot[3][m]+2)%4;
+					}
+					for(int m=0;m<4;m++)
+						rot[2][m]=(rot[2][m]+2)%4;
+				}
+				for(int m=0;m<4;m++)
+					rot[1][m]=(rot[1][m]+2)%4;
+			}
+			for(int m=0;m<4;m++)
+				rot[0][m]=(rot[0][m]+2)%4;
+		}
+		p:
+		int total=0,total1=0;
+		for(int i=0;i<4;i++)
+			for(int j=0;j<4;j++){
+				total=rot[i][j]+total;
+				total1=(rot[i][j]+2)%4+total1;
+			}
+		if(total<total1){
+			printf("%d\n",total);
+			for(int i=0;i<4;i++)
+				for(int j=0;j<4;j++)
+					for(int k=0;k<rot[i][j];k++)
+						printf("%d %d\n",i+1,j+1);
+		}else{
+			printf("%d\n",total1);
+			for(int i=0;i<4;i++)
+				for(int j=0;j<4;j++)
+					for(int k=0;k<(rot[i][j]+2)%4;k++)
+						printf("%d %d\n",i+1,j+1);
+		}
+	}
+}
