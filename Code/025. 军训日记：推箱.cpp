@@ -14,3 +14,27 @@ https://uploadfiles.nowcoder.com/images/20200809/329343_1596986374049_21A10E668E
 一行包含一个正整数x，表示最高列的最低值是x。
 注意：行末无空格，文末有回车
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+int main(){
+	ios::sync_with_stdio(false);
+	ll n,i,pkjy,temp,count,sum;
+	scanf("%lld",&n);
+	ll a[n];
+	pkjy=INT_MAX;
+	for(i=0;i<n;i++){
+		scanf("%lld",&a[i]);
+		if(a[i]<pkjy)
+			pkjy=a[i];
+	}
+	count=sum=temp=0;
+	for(i=0;i<n;i++){
+		count+=1;
+		sum+=a[i];
+		temp=sum/count;
+		if(temp>pkjy)
+			pkjy=temp;
+	}
+	printf("%lld\n",pkjy); 
+}
