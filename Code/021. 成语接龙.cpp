@@ -12,3 +12,73 @@ Output
 Notes
 三个成语分别是(1,2,3,4)(4,5,6,7)(7,8,9,10)
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define N 300005
+struct mark{
+	long idiom;
+	bool visit;
+	mark(long Idiom,bool Visit){
+		idiom=Idiom;
+		visit=Visit;
+	}
+};
+struct Pos{
+	public:
+		long id;
+		long step;
+		Pos(long ID,long Step){
+			id=ID;
+			step=Step;
+		}
+};
+struct idiom{
+	public:
+		long idiomA;
+		long idiomB;
+		long idiomC;
+		long idiomD;
+};
+queue<Pos> q; 
+vector<mark> r[N];
+int main(){
+	long m,i;
+	scanf("%ld",&m);
+	for(i=0;i<m;i++){
+		idiom temp;
+		scanf("%ld %ld %ld %ld",&temp.idiomA,&temp.idiomB,&temp.idiomC,&temp.idiomD);
+		r[temp.idiomA].push_back(mark(temp.idiomD, 0));
+    }
+	idiom idiomStart, idiomEnd;
+	scanf("%ld %ld %ld %ld",&idiomStart.idiomA,&idiomStart.idiomB,&idiomStart.idiomC,&idiomStart.idiomD);
+	scanf("%ld %ld %ld %ld",&idiomEnd.idiomA,&idiomEnd.idiomB,&idiomEnd.idiomC,&idiomEnd.idiomD);
+	if(idiomStart.idiomA==idiomEnd.idiomA && idiomStart.idiomB==idiomEnd.idiomB && idiomStart.idiomC==idiomEnd.idiomC && idiomStart.idiomD==idiomEnd.idiomD){
+		printf("1\n");
+		exit(0);
+	}
+	if(idiomStart.idiomD==idiomEnd.idiomA){
+		printf("2\n");
+		exit(0);
+	}
+	Pos PosStart(idiomStart.idiomD,0);
+	q.push(PosStart);
+	long min=N;
+	while(!q.empty()){
+		Pos temp=q.front();
+		for(i=0;i<r[temp.id].size();i++){
+			if(r[temp.id][i].visit==0){
+				if(r[temp.id][i].idiom==idiomEnd.idiomA)
+					if(temp.step+3<=min)
+						min=temp.step+3;
+				r[temp.id][i].visit=1;
+				Pos ReturnPos(r[temp.id][i].idiom,temp.step+1);
+				q.push(ReturnPos);
+			}
+		}
+		q.pop();
+	}
+	if(min!=N)
+		printf("%ld\n",min);
+	else
+		printf("-1\n");
+}
