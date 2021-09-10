@@ -11,3 +11,40 @@ Note
 所有数据保证 3 小於等於 n 小於等於 500000 逗號 負 10 的 9 次方 小於等於 a 下標 i 小於等於 10 的 9 次方。
 样例解释：取的三个不相交连续子串分别是{2,3} {1} {1}。
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define N 500005
+#define inf 0x3f3f3f3f
+ll dp[4][N],a[N],n;
+ll maxCmp(ll x,ll y){
+	if(x>y)
+		return x;
+	else
+		return y;
+}
+int main(){
+	ios::sync_with_stdio(false);
+	ll i,j;
+	scanf("%lld",&n);
+	for(i=1;i<=n;i++)
+		scanf("%lld",&a[i]);
+	for(i=0;i<=n;i++)
+		dp[0][i]=0,dp[1][i]=0;
+	for(i=1;i<=3;i++){
+		ll maxBefore=-inf;
+		for(j=i;j<=n;j++){
+			if(j==i){
+				dp[i][j]=dp[i-1][j-1]+a[j];
+				continue;
+			}
+			maxBefore=maxCmp(maxBefore,dp[i-1][j-1]);
+			dp[i][j]=maxCmp(dp[i][j-1],maxBefore)+a[j];
+		}
+	}
+	ll max=dp[3][3];
+	for(i=3;i<=n;i++)
+		if(dp[3][i]>max)
+			max=dp[3][i];
+	printf("%lld\n",max);
+}
