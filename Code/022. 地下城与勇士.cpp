@@ -10,3 +10,64 @@ Output
 Source
 BITACM2018第一轮积分赛（三）- Problem J
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define N 105
+const int dx[]={0,0,1,-1};
+const int dy[]={1,-1,0,0};
+struct node{
+	int x,y,z;
+	int step;
+	node(int x_,int y_,int z_,int step_){
+		x=x_;
+		y=y_;
+		z=z_;
+		step=step_;
+	}
+};
+int visit[N][N][50];
+char Map[N][N];
+int main(){
+	int n,m,T,k,i,j,startX,startY;
+	scanf("%d",&T);
+	while(T--){
+		queue<node> que;
+		scanf("%d %d %d",&n,&m,&k);
+		for(i=0;i<n;++i){
+			scanf("%s",&Map[i]);
+			for(j=0;j<m;++j)
+				if(Map[i][j]=='S'){
+					startX=i;
+					startY=j;
+				}
+		}
+		memset(visit,0,sizeof(visit));
+		que.push(node(startX,startY,0,0));
+		visit[startX][startY][0]=1;
+		int ans,flag=0;
+		while(!que.empty()){
+			node temp=que.front();
+			que.pop();
+			if(Map[temp.x][temp.y]=='E'){
+				ans=temp.step;
+				flag=1;
+				break;
+			}
+			for(i=0;i<4;++i){
+				int x=temp.x+dx[i],y=temp.y+dy[i];
+				if((temp.z+1)%k){
+					if(x<0 || x>=n || y<0 || y>=m || Map[x][y]=='#' || Map[x][y]=='*' || visit[x][y][(temp.z+1)%k]==1)
+						continue;
+				}else
+					if(x<0 || x>=n || y<0 || y>=m || Map[x][y]=='#'|| visit[x][y][(temp.z+1)%k]==1)
+						continue;
+				que.push(node(x,y,temp.z+1,temp.step+1));
+				visit[x][y][(temp.z+1)%k]=1;
+			}
+		}
+		if(flag)
+			cout << ans << endl;
+		else
+			cout << -1 << endl;
+	}
+}
