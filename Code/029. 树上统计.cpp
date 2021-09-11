@@ -15,3 +15,59 @@ Input
 Output
 输出 \sum dist(u,v)
 */
+#include <bits/stdc++.h>
+using namespace std;
+#define N 200005
+#define ll long long int
+vector<ll> edge[N];
+ll oddRoot,evenRoot,sizeTree[N],disRoot[N],sum[N],ans;
+int dfs1(ll i,ll f){
+	for(ll j=0;j<edge[i].size();j++){
+		ll temp=edge[i][j];
+		if(temp!=f)
+			sizeTree[i]+=dfs1(temp,i);
+	}
+	sizeTree[i]++;
+	return sizeTree[i];
+}
+void dfs2(ll i,ll f,ll r,ll depth){
+    for(ll j=0;j<edge[i].size();j++){
+		ll temp=edge[i][j];
+		if(temp!=f){
+			if(depth&1==1)
+				oddRoot++;
+			else
+				evenRoot++;
+			disRoot[temp]=depth;
+			sum[r]+=(depth%2)+(depth/2);
+			dfs2(temp,i,r,depth+1);
+		}
+	}
+}
+void dfs3(ll i,ll f){
+	for(ll j=0;j<edge[i].size();j++){
+		ll temp=edge[i][j];
+		ll even=disRoot[i]%2==0?evenRoot:oddRoot-1;
+		if(temp!=f){
+			sum[temp]=sum[i]+even-sizeTree[temp]+1;
+			ans+=sum[temp];
+			dfs3(temp,i);
+		}
+	}
+}
+int main(){
+	ios::sync_with_stdio(false);
+	ll n,a,b,r,i;
+	scanf("%lld",&n);
+	for(i=0;i<n-1;i++){
+		scanf("%lld %lld",&a,&b);
+		edge[a].push_back(b);
+		edge[b].push_back(a);
+	}
+	r=a;
+	dfs1(r,0);
+	dfs2(r,0,r,1);
+	ans+=sum[r];
+	dfs3(r,0);
+	printf("%lld\n",ans/2);
+}
