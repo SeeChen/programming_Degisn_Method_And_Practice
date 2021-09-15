@@ -43,7 +43,7 @@ int main(){
 		for(j=0;j<=501;j++)
 			for(k=0;k<=501;k++)
 				if(j+w[i]<=500)
-					if(dp[0][j][k]<=0)
+					if(dp[0][j][k]>=0)
 						dp[1][j+w[i]][Min(500,k+v[i])]=Max(dp[1][j+w[i]][Min(500,k+v[i])],dp[0][j][k]+g[i]);
 		for(j=0;j<501;j++)
 			for(k=0;k<501;k++)
