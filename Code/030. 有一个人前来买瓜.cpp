@@ -14,3 +14,48 @@ Input
 Output
 输出一共有q行，每行一个整数，分别代表每组询问的最大金粒子数总和，若无合法的买法则输出-1。
 */
+#include <bits/stdc++.h>
+using namespace std;
+int Max(int a,int b){
+	if(a>b)
+		return a;
+	else
+		return b;
+}
+int Min(int a,int b){
+    if(a<b)
+		return a;
+	else
+		return b;
+}
+int main(){
+	ios::sync_with_stdio(false);
+	int dp[2][505][505],n,q,W,V,i,j,k;
+	for(i=0;i<2;i++)
+		for(j=0;j<505;j++)
+			for(k=0;k<505;k++)
+				dp[i][j][k]=-1;
+	dp[0][0][0]=dp[1][0][0]=0;
+	scanf("%d %d",&n,&q);
+	int w[n],v[n],g[n];
+	for(i=1;i<=n;i++){
+		scanf("%d %d %d",&w[i],&v[i],&g[i]);
+		for(j=0;j<=501;j++)
+			for(k=0;k<=501;k++)
+				if(j+w[i]<=500)
+					if(dp[0][j][k]!=-1)
+						dp[1][j+w[i]][Min(500,k+v[i])]=Max(dp[1][j+w[i]][Min(500,k+v[i])],dp[0][j][k]+g[i]);
+		for(j=0;j<501;j++)
+			for(k=0;k<501;k++)
+				dp[0][j][k]=dp[1][j][k];
+	}
+	while(q--){
+		int ans=-1;
+        scanf("%d %d",&W,&V);
+		for(j=1;j<=W;j++)
+			for(k=V;k<505;k++)
+				if(dp[0][j][k]!=-1)
+					ans=Max(ans,dp[0][j][k]);
+		printf("%d\n",ans);
+    }
+}
