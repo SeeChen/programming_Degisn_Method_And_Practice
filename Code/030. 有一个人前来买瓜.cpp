@@ -51,7 +51,7 @@ int main(){
 	}
 	while(q--){
 		int ans=-1;
-        scanf("%d %d",&W,&V);
+        	scanf("%d %d",&W,&V);
 		for(j=1;j<=W;j++)
 			for(k=V;k<505;k++)
 				if(dp[0][j][k]!=-1)
