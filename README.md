@@ -29,7 +29,7 @@
 >- 代码不保证完全正确，如果您有更好的代码，可以向我 [Pull requests](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request);
 >- 如果对于代码有任何的问题，可以在 [Issues](https://github.com/SeeChen/programming_Degisn_Method_And_Practice/issues) 发表讨论，或在 [Gitter](https://gitter.im/SeeChen) 上私聊。
 ><!--若想查看题目的解题思路，请点击[这里](https://google.com);.-->
->代码的 OJ 测试结果，请查看更新信息一栏,[更新信息标识](#description)。
+>-代码的 OJ 测试结果，请查看更新信息一栏,[更新信息标识](#description)。
 #### 文件
 >- 代码按照[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)由上至下顺序排序，与[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)的编号会有所不同;
 >- 除了文件的编号，标题与[乐学程序设计方法与实践](http://lexue.bit.edu.cn/)中题目所用的标题一致;
